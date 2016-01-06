@@ -1,29 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Articles</h1>
+<div class="container">
+  <% @articles.each do |article| %>
+      <div class="content_card">
+        <%= link_to (image_tag article.image.url(:thumb)), article %>
+        <%= article.source %>
+        <%= article.description %>
+        <ul>
+          <li><%= link_to 'Show', article %></li>
+          <li><%= link_to 'Edit', edit_article_path(article) %></li>
+          <li><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+      </div>
+  <% end %>
+</di>
 
-<table>
-  <thead>
-    <tr>
-      <th>Source</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.source %></td>
-        <td><%= article.description %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Article', new_article_path %>
+
+
+
