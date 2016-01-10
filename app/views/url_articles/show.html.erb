@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @url_article.title %>
+
+  <br>
+
+  <strong>Source:</strong>
+  <%= @url_article.source %>
+  <h4> url: <%= @url %> taken from the source </h4>
+</p>
+
+<%= link_to 'Edit', edit_url_article_path(@url_article) %> |
+<%= link_to 'Back', url_articles_path %>

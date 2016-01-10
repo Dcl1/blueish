@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
+  
+
   <% @articles.each do |article| %>
       <div class="content_card">
         <%= link_to (image_tag article.image.url(:thumb)), article %>
