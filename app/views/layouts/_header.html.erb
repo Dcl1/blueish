@@ -4,14 +4,22 @@
 
 		<% if user_signed_in? %>
 			<li><%= link_to "Account", edit_user_registration_path %></li>
-			<li><%= link_to "New Article", new_article_path %></li>
-			<li><%= link_to "New Url Article", new_url_article_path %></li>
+			<li>
+				<div class="dropdown">
+					<button class="dropbtn"> Post Content </button>
+					<div class="dropdown-content">
+						<a><%= link_to "New Post", new_post_path %></a>
+						<a><%= link_to "New Url Article", new_url_article_path %></a>
+					</div>
+				</div>
+			</li>
+			
 
 		<% else %>
 			<li><%= link_to "Sign Up", new_user_registration_path %></li>
 			<li><%= link_to "Sign In", new_user_session_path %></li>
 		<% end %>
-		<li><%= link_to "Home", articles_path %></li>
+		<li><%= link_to "Home", posts_path %></li>
 	</ul>
 
 

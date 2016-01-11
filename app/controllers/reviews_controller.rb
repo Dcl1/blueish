@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :set_article
+  before_action :set_post
   before_action :authenticate_user!
 
 
@@ -63,8 +63,8 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
     end
 
-    def set_article
-      @article = Article.find(params[:article_id])
+    def set_post
+      @post = Post.find(params[:post_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
