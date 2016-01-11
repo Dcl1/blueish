@@ -9,6 +9,6 @@ Rails.application.routes.draw do
 
   resources :contents, only: [:index]
  
-  root 'contents#index'
+  root 'articles#index'
 
 end
