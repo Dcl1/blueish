@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  
+
+  <% @posts.each do |post| %>
+      <div class="content_card">
+        <%= link_to (image_tag post.image.url(:thumb)), post %>
+        <%= post.title %>
+        <%= post.description %>
+        <ul>
+          <li><%= link_to 'Show', post %></li>
+          <li><%= link_to 'Edit', edit_post_path(post) %></li>
+          <li><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+      </div>
+  <% end %>
+</di>
+
+
+
+
+
+
+
