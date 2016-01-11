@@ -10,7 +10,7 @@
         <%= article.description %>
         <ul>
           <li><%= link_to 'Show', article %></li>
-          <li><%= link_to 'Edit', edit_content_article_path(article) %></li>
+          <li><%= link_to 'Edit', edit_article_path(article) %></li>
           <li><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         </ul>
       </div>
