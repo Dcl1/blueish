@@ -15,7 +15,9 @@
   <tbody>
     <% @url_articles.each do |url_article| %>
       <tr>
+        <td><%= image_tag url_article.image_source %></td>
         <td><%= url_article.title %></td>
+        <td><%= url_article.image_source %></td>
         <td><%= link_to 'Show', url_article %></td>
         <td><%= link_to 'Edit', edit_url_article_path(url_article) %></td>
         <td><%= link_to 'Destroy', url_article, method: :delete, data: { confirm: 'Are you sure?' } %></td>

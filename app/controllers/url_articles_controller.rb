@@ -9,6 +9,7 @@ class UrlArticlesController < ApplicationController
   # GET /url_articles.json
   def index
     @url_articles = UrlArticle.all
+
   end
 
   # GET /url_articles/1
@@ -36,9 +37,16 @@ class UrlArticlesController < ApplicationController
     @url = @url_article.source
     doc = Nokogiri::HTML(open(@url))
 
-    titleText = doc.title
+    object = LinkThumbnailer.generate(@url)
+    titleText = object.title
+
+    #titleText = doc.title
     @url_article.title = titleText
     #end of grab title
+
+    @url_article.image_source = object.images.first.src.to_s
+
+
 
 
     respond_to do |format|
@@ -79,10 +87,24 @@ class UrlArticlesController < ApplicationController
   private
 
     def set_title_of_url
+
       @url = @url_article.source
       doc = Nokogiri::HTML(open(@url))
 
       titleGrab = doc.xpath('//h1')
+
+      @news = doc.xpath('//item').map do |i|
+        thumb = i.at_xpath('media:thumbnail').attr('url') if i.at_xpath('media:thumbnail')
+        {
+          'title' => i.at_xpath('title').text,
+          'link' => i.at_xpath('link').text,
+          'description' => i.at_xpath('description').text,
+          'thumbnail' => thumb
+        }
+      end
+
+
+      @url_article.image = @news.thumb
 
       @url_article.title = titleGrab
     end
@@ -94,6 +116,6 @@ class UrlArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def url_article_params
-      params.require(:url_article).permit(:source, :title)
+      params.require(:url_article).permit(:source, :title, :image, :image_source)
     end
 end
